@@ -35,15 +35,21 @@ namespace Clicker
 
         }
 
-        public void OnPointerDown(PointerEventData eventData) =>
+        public void OnPointerDown(PointerEventData eventData)
+        {
             isDown = true;
+            SessionInfo.Instance.clickPerSession++;
+            AppMetrica.Instance.ReportEvent("ButtonClick");
+        }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             isDown = false;
             _points += pointMult * _pointsPerPress;
+            SessionInfo.Instance.pointsPerSession += pointMult * _pointsPerPress;
             _pointsPerPress = 0;
             _view.SetText($"{_points:F2}");
+            AppMetrica.Instance.ReportEvent("ButtonUnClick");
         }
 
         public override void SetLoadedData(object data) =>

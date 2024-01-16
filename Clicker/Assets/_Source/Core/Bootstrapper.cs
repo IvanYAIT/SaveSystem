@@ -19,7 +19,7 @@ namespace Core
             saveController.LoadAll();
         }
 
-        private void OnDestroy()
+        private void OnApplicationQuit()
         {
             _saveController.SaveAll();
         }
