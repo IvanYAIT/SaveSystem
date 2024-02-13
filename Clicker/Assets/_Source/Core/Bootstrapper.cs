@@ -21,6 +21,7 @@ namespace Core
 
         private void OnDestroy()
         {
+            Debug.Log(_saveController);
             _saveController.SaveAll();
         }
     }
